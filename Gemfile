@@ -13,8 +13,13 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 
+
+# Authentication
 gem 'devise_token_auth'
 gem 'omniauth'
+
+# Attachments
+gem "paperclip", "~> 5.0.0"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
