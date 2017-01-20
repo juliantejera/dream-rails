@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  reverse_geocoded_by :latitude, :longitude
+
   # Associations
   has_many :photos
 end
