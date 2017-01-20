@@ -58,6 +58,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     ffi (1.9.17)
+    geocoder (1.4.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.4.6)
@@ -168,6 +169,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   devise_token_auth
+  geocoder
   listen (~> 3.0.5)
   omniauth
   paperclip (~> 5.0.0)
