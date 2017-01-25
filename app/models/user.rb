@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
   reverse_geocoded_by :latitude, :longitude
 
   # Associations
-  has_many :photos
+  has_many :user_photos
+  has_many :photos, through: :user_photos
 end
