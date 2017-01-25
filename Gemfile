@@ -19,7 +19,10 @@ gem 'devise_token_auth'
 gem 'omniauth'
 
 # Attachments
-gem "paperclip", "~> 5.0.0"
+gem 'paperclip', '~> 5.0.0'
+
+# Location
+gem 'geocoder'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
