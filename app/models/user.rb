@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   # Associations
   has_many :user_photos
   has_many :photos, through: :user_photos
+  has_many :photo_likes
 end
