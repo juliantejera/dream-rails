@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   timeout: 5000
   encoding: utf8
-  username: dream
+  username: <%= ENV['TRAVIS'] ? 'postgres' : 'dream' %>
 
 development:
   <<: *default
