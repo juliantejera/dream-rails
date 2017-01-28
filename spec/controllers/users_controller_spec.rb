@@ -28,15 +28,13 @@ RSpec.describe UsersController, type: :controller do
       context 'when julian makes a request' do
 
         before do
-          @auth_headers = julian.create_new_auth_token
-          request.headers.merge!(@auth_headers)
+          login(julian)
         end
 
         it 'returns will' do
           get :index, params: { limit: 1 }
-          expected = [UserSerializer.new(will)].to_json
-          actual = response.body
-          expect(actual).to eq expected
+          actual = JSON.parse(response.body).map { |h| h['id'] }
+          expect(actual).to eq [will.id]
         end
 
       end
@@ -44,15 +42,13 @@ RSpec.describe UsersController, type: :controller do
       context 'when yanko makes a request' do
 
         before do
-          @auth_headers = yanko.create_new_auth_token
-          request.headers.merge!(@auth_headers)
+          login(yanko)
         end
 
         it 'returns will and julian' do
           get :index, params: { limit: 2, radius: 100000 }
-          expected = [will, julian].map { |user| UserSerializer.new(user) }.to_json
-          actual = response.body
-          expect(actual).to eq expected
+          actual = JSON.parse(response.body).map { |h| h['id'] }
+          expect(actual).to eq [will.id, julian.id]
         end
 
       end
