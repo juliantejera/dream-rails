@@ -189,6 +189,7 @@ DEPENDENCIES
   devise_token_auth
   factory_girl_rails
   geocoder
+  hashie
   listen (~> 3.0.5)
   omniauth
   paperclip (~> 5.0.0)

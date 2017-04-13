@@ -43,6 +43,7 @@ group :test do
   gem 'rake'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'hashie'
 end
 
 group :development do
