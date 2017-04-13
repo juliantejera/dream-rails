@@ -3,7 +3,10 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = current_user.nearbys(radius).limit(limit).offset(offset)
+    @users = current_user.nearbys(radius)
+                         .limit(limit)
+                         .offset(offset)
+                         .includes(:photos)
     render json: @users, each_serializer: UserSerializer
   end
 
