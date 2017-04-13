@@ -9,4 +9,10 @@ FactoryGirl.define do
     password 'P@ssw0rd!'
   end
 
+  factory :photo do
+    order 0
+    status 0
+    image { File.new("#{Rails.root}/spec/support/fixtures/image.jpg") }
+  end
+
 end
