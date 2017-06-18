@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UserSerializer, type: :serializer do
 
   let(:photo) { build :photo, id: 1 }
-  let(:user) { User.new(id: 1, email: 'jt@dream.com', photos: [photo]) }
+  let(:user) { User.new(id: 1, photos: [photo]) }
   let(:subject) { Hashie::Mash.new(UserSerializer.new(user).serializable_hash) }
 
   before do
@@ -22,10 +22,6 @@ RSpec.describe UserSerializer, type: :serializer do
 
   it 'has an id' do
     expect(subject.id).to eq user.id
-  end
-
-  it 'has an email' do
-    expect(subject.email).to eq user.email
   end
 
   it 'has a distance' do
