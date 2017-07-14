@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     render json: @users, each_serializer: UserSerializer
   end
 
+  # PATCH/PUT /users/1
+  def update
+    if current_user.update(user_params)
+      render json: {}
+    else
+      render json: current_user.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
     # In miles
@@ -25,4 +34,8 @@ class UsersController < ApplicationController
       params[:offset] || 0
     end
 
+    # Only allow a trusted parameter "white list" through.
+    def user_params
+      params.require(:user).permit(:latitude, :longitude)
+    end
 end

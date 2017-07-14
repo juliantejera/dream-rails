@@ -5,12 +5,10 @@ RSpec.describe UsersController, type: :controller do
   describe '#index' do
 
     context 'when the user is not authenticated' do
-
       it 'return 401' do
         get :index
         expect(response.status).to eq 401
       end
-
     end
 
     context 'when the user is authenticated' do
@@ -26,7 +24,6 @@ RSpec.describe UsersController, type: :controller do
 
 
       context 'when julian makes a request' do
-
         before do
           login(julian)
         end
@@ -36,11 +33,9 @@ RSpec.describe UsersController, type: :controller do
           actual = JSON.parse(response.body).map { |h| h['id'] }
           expect(actual).to eq [will.id]
         end
-
       end
 
       context 'when yanko makes a request' do
-
         before do
           login(yanko)
         end
@@ -50,9 +45,42 @@ RSpec.describe UsersController, type: :controller do
           actual = JSON.parse(response.body).map { |h| h['id'] }
           expect(actual).to eq [will.id, julian.id]
         end
-
       end
 
+    end
+
+  end
+
+  describe '#update' do
+    context 'when the user is not authenticated' do
+      it 'return 401' do
+        get :index
+        expect(response.status).to eq 401
+      end
+    end
+
+    context 'when the user is authenticated' do
+      let!(:user) { create :user, latitude: 0, longitude: 0 }
+
+      before do
+        login(user)
+      end
+
+      describe 'coordinates update' do
+        let(:latitude) { 40.764346 }
+        let(:longitude) { -73.9834023 }
+        let(:params) { { id: user.id, user: { latitude: latitude, longitude: longitude } } }
+
+        before do
+          put :update, params: params
+          user.reload
+        end
+
+        it 'updates the longitude and latitude' do
+          expect(user.latitude).to eq latitude
+          expect(user.longitude).to eq longitude
+        end
+      end
     end
 
   end
